@@ -1,0 +1,44 @@
+using Human_resource_management.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Human_resource_management.Controllers
+{
+    public class AccountController : Controller
+    {
+        SqlConnection con = new SqlConnection();
+        SqlCommand com = new SqlCommand();
+        SqlDataReader dr;
+        // GET: Account
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        void ConnectionString()
+        { 
+            con.ConnectionString = "Data Source=DESKTOP-OK1R2C7; Initial Catalog=Northwind; Integrated Security=True;";
+         
+            }
+
+
+        [HttpPost]
+        public ActionResult Login(Account Acc)
+        {
+            ConnectionString();
+            con.Open();
+            com.Connection = con;
+            com.CommandText = "select * from Users where username = '"+Acc.id+"'and password = '"+Acc.Password+"';
+                dr = com.ExecuteReader();
+            if
+
+            return View();
+
+        }
+    }
+}
